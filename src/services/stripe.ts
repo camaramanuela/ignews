@@ -1,6 +1,6 @@
 import Stripe from "stripe";
 
-export const stripe = require('stripe')('sk_test_51JNqqsLWVU1Vlgl8r9tzHLNuPgJFDB90ElH7erY7W6NH1dHqelhXcXOVK0T8JIMB1lrL9xo8y6eIWEf6KEkuml6e00KE8hWfMz');
+export const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 
 
 // export const stripe = new Stripe(
