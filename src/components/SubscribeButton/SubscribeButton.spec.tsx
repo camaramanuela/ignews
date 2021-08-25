@@ -36,29 +36,31 @@ describe('Subscribe component', () => {
   it('redirects to post when user already has a subscription', () => {
     const useRouterMocked = mocked(useRouter);
     const useSessionMocked = mocked(useSession);
-    const pushMock = jest.fn();
+    const pushMock = jest.fn()
 
     useSessionMocked.mockReturnValueOnce([
       {
-        user: { name: 'John Doe', email: 'john.doe@example.com'},
-        activeFakeSubscription: 'fake-active-subscription',
-        expires: 'fake-expires'
+        user: 
+        { 
+          name: 'John Doe', 
+          email: 'john.doe@example.com'
+        },
+        expires: 'fake-expires',
+        activeSubscription: 'fake-active-subscription',
       },
       false
     ])
 
     useRouterMocked.mockReturnValueOnce({
-      push: pushMock,
+      push: pushMock
     } as any)
     
 
     render(<SubscribeButton />)
 
-    const subscribeButton = screen.getByText(/Subscribe now/i)
-
+    const subscribeButton = screen.getByText('Subscribe now')
     fireEvent.click(subscribeButton)
-
-    // expect(pushMock).toHaveBeenCalledWith('/posts')
+    expect(pushMock).toHaveBeenCalledWith('/posts')
   })
 })
 
